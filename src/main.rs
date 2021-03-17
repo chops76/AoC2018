@@ -2,10 +2,12 @@ use std::time::Instant;
 use std::env;
 
 mod day1;
+mod day2;
 
 fn main() {
 	let days = [
-		day1::main
+		day1::main,
+		day2::main
 	];
 
 	let args: Vec<String> = env::args().collect();
