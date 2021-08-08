@@ -145,7 +145,7 @@ fn eqrr(instr: &Instruction, regs: &Regs) -> Regs {
 
 fn part1(instructions: &Observed) -> usize {
 	let mut num_passing = 0;
-	
+	println!("Num Instr = {}", instructions.len());
 	for instr in instructions {
 		let mut sum = 0;
 		if addr(&instr.2, &instr.0) == instr.1 { sum += 1 };
@@ -181,6 +181,7 @@ fn part2(instructions: &Observed, program: &Program) -> usize {
 		possibilities.push(hs.clone());
 	}
 	for instr in instructions {
+		let mut sum = 0;
 		if addr(&instr.2, &instr.0) != instr.1 { possibilities[instr.2[0]].remove(&0); }
 		if addi(&instr.2, &instr.0) != instr.1 { possibilities[instr.2[0]].remove(&1); }
 		if mulr(&instr.2, &instr.0) != instr.1 { possibilities[instr.2[0]].remove(&2); }
@@ -217,26 +218,26 @@ fn part2(instructions: &Observed, program: &Program) -> usize {
 			}
 		}
 	}
-	
+	println!("{:?}", program);
 	let mut regs = vec![0, 0, 0, 0];
 	for inst in program {
 		match table[inst[0]] {
 			0 => regs = addr(&inst, &regs),
-			1 => regs = addi(&inst, &regs),
-			2 => regs = mulr(&inst, &regs),
-			3 => regs = muli(&inst, &regs),
-			4 => regs = banr(&inst, &regs),
-			5 => regs = bani(&inst, &regs),
-			6 => regs = borr(&inst, &regs),
-			7 => regs = bori(&inst, &regs),
-			8 => regs = setr(&inst, &regs),
-			9 => regs = seti(&inst, &regs),
-			10 => regs = gtir(&inst, &regs),
-			11 => regs = gtri(&inst, &regs),
-			12 => regs = gtrr(&inst, &regs),
-			13 => regs = eqir(&inst, &regs),
-			14 => regs = eqri(&inst, &regs),
-			15 => regs = eqrr(&inst, &regs),
+			1 => regs = addr(&inst, &regs),
+			2 => regs = addr(&inst, &regs),
+			3 => regs = addr(&inst, &regs),
+			4 => regs = addr(&inst, &regs),
+			5 => regs = addr(&inst, &regs),
+			6 => regs = addr(&inst, &regs),
+			7 => regs = addr(&inst, &regs),
+			8 => regs = addr(&inst, &regs),
+			9 => regs = addr(&inst, &regs),
+			10 => regs = addr(&inst, &regs),
+			11 => regs = addr(&inst, &regs),
+			12 => regs = addr(&inst, &regs),
+			13 => regs = addr(&inst, &regs),
+			14 => regs = addr(&inst, &regs),
+			15 => regs = addr(&inst, &regs),
 			_ => println!("INVALID OPCODE")
 		}
 	}
