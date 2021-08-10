@@ -218,7 +218,7 @@ fn part2(instructions: &Observed, program: &Program) -> usize {
 			}
 		}
 	}
-	println!("{:?}", program);
+	println!("{:?}", table);
 	let mut regs = vec![0, 0, 0, 0];
 	for inst in program {
 		match table[inst[0]] {
